@@ -41,7 +41,7 @@ script:
   - source ${MKLROOT}/../bin/compilervars.sh ${_intel_arch}
   - source ${MKLROOT}/bin/mklvars.sh ${_intel_arch}
   - export _mkllibs=" -L${MKLROOT}/lib/${_intel_arch} -l${_intel_lib} -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
-# - export LDFLAGS="-qopenmp"
+  - export LDFLAGS="-qopenmp"
   - export FLIBS=" -lgfortran -lifcore -lifport"
 # - export CFLAGS="-openmp -O3 -ipo -xHost -multiple-processes"
 # - export CFLAGS="-O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I ${MKLROOT}/include"
