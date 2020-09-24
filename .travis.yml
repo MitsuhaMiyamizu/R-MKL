@@ -21,7 +21,7 @@ addons:
       - libx11-dev
 
 script:
-  - sudo apt build-dep r-base -y
+  - sudo apt -qq build-dep r-base -y
   - wget "${ICCDL}" -q
   - tar xzf intel.tar.gz
   - export PATH=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/:$PATH
@@ -38,6 +38,8 @@ script:
   - export _intel_arch=intel64
   - export _intel_lib=mkl_intel_lp64
   - export _gfortran_lib=mkl_gf_lp64
+    #- export LDFLAGS="-qopenmp"
+  - export FLIBS=" -lgfortran -lifcore -lifport"
 # - export CFLAGS="-openmp -O3 -ipo -xHost -multiple-processes"
 # - export CFLAGS="-O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I ${MKLROOT}/include"
 # - export CXXFLAGS="-openmp -O3 -ipo -xHost -multiple-processes"
@@ -47,8 +49,8 @@ script:
   - export CXXFLAGS="${_intel_cc_opt}"
   - export FFLAGS="${_intel_cc_opt}"
   - export FCFLAGS="${_intel_cc_opt}"
-  - wget https://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz
-  - tar zxvf R-4.0.2.tar.gz
+  - wget "https://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz" -q
+  - tar zxf R-4.0.2.tar.gz
   - cd R-4.0.2/
   - ./configure  --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --with-blas="${_mkllibs}" --with-lapack --enable-R-shlib LIBnn=lib
 # - export MKL="-lmkl_rt"
