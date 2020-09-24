@@ -27,7 +27,7 @@ script:
   - export PATH=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/:$PATH
   - export INTEL_LICENSE_FILE=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/
   - export MKLROOT=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/mkl/
-  - export _intel_cc_opt=" -O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
+  - export _intel_cc_opt="-openmp -O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
 # - source /home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/compilervars.sh intel64
   - export CC="icc"
   - export CXX="icpc"
@@ -41,11 +41,11 @@ script:
   - source ${MKLROOT}/../bin/compilervars.sh ${_intel_arch}
   - source ${MKLROOT}/bin/mklvars.sh ${_intel_arch}
   - export _mkllibs=" -L${MKLROOT}/lib/${_intel_arch} -l${_intel_lib} -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
-  - export LDFLAGS=""
-  - export R_OPENMP_CFLAGS="-qopenmp"
-  - export SHLIB_OPENMP_CFLAGS="-qopenmp"
-  - export SHLIB_OPENMP_CXXFLAGS="-qopenmp"
-  - export SHLIB_OPENMP_FFLAGS="-qopenmp"
+  - export LDFLAGS="-openmp"
+  - export R_OPENMP_CFLAGS="-openmp"
+  - export SHLIB_OPENMP_CFLAGS="-openmp"
+  - export SHLIB_OPENMP_CXXFLAGS="-openmp"
+  - export SHLIB_OPENMP_FFLAGS="-openmp"
   - export FLIBS=" -lgfortran -lifcore -lifport"
 # - export CFLAGS="-openmp -O3 -ipo -xHost -multiple-processes"
 # - export CFLAGS="-O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I ${MKLROOT}/include"
