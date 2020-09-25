@@ -52,8 +52,8 @@ script:
   - export FCFLAGS="${_gcc_opt} -I${MKLROOT}/include"
   - export CC="icc -std=c99"
   - export CXX="icpc"
-# - export F77="ifort"
-# - export FC="ifort"
+  - export F77="ifort"
+  - export FC="ifort"
   - export AR="xiar"
   - export LD="xild"
   - export _intel_arch=intel64
