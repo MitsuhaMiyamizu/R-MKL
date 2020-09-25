@@ -43,14 +43,14 @@ script:
 # - export INTEL_LICENSE_FILE=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/
 # - export MKLROOT=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/mkl/
 # - export _intel_cc_opt=" -O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
-  - export MKL="-L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_gf_lp64 -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl"
+  - export MKL="-L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lgomp -lpthread -lm -ldl"
   - export _gcc_opt=" -O3 -m64 -fopenmp -march=native"
   - export LDFLAGS=" -fopenmp"
   - export CFLAGS="${_gcc_opt} -I${MKLROOT}/include"
   - export CXXFLAGS="${_gcc_opt} -I${MKLROOT}/include"
   - export FFLAGS="${_gcc_opt} -I${MKLROOT}/include"
   - export FCFLAGS="${_gcc_opt} -I${MKLROOT}/include"
-  - export CC="icc"
+  - export CC="icc -std=c99"
   - export CXX="icpc"
 # - export F77="ifort"
 # - export FC="ifort"
@@ -61,7 +61,7 @@ script:
 #  - export LD_LIBRARY_PATH=/opt/intel/lib/intel64
 #  - export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl/lib/intel64_lin/
 #  - export _gfortran_lib=mkl_gf_lp64
-# - source /home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
+  - source /home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
 #  - source ${MKLROOT}/bin/mklvars.sh ${_intel_arch}
 # - source ${MKLROOT}/../bin/ifortvars.sh ${_intel_arch}
 # - export _mkllibs=" -L${MKLROOT}/lib/${_intel_arch} -l${_intel_lib} -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
