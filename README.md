@@ -1,5 +1,5 @@
 # R-MKL
-Experimental compiled binary of R with MKL.
+Experimental compiled binary of R with performance improvement by MKL.
 
 # Build Status
 
