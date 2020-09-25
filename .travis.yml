@@ -20,6 +20,11 @@ addons:
       - libomp-dev
       - libx11-dev
       - libpcre2-dev
+      - libjpeg-dev
+      - libpng-dev
+      - libtiff-dev
+      - libxmu-dev
+      - libxt-dev
 
 script:
   - sudo apt -qq build-dep r-base -y
