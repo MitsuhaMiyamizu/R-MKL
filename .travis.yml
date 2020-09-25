@@ -52,14 +52,14 @@ script:
   - export FCFLAGS="${_gcc_opt} -I${MKLROOT}/include"
   - export CC="icc"
   - export CXX="icpc"
-  - export F77="ifort"
-  - export FC="ifort"
+# - export F77="ifort"
+# - export FC="ifort"
   - export AR="xiar"
   - export LD="xild"
   - export _intel_arch=intel64
   - export _intel_lib=mkl_intel_lp64
 #  - export _gfortran_lib=mkl_gf_lp64
-  - source /home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
+# - source /home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
 #  - source ${MKLROOT}/bin/mklvars.sh ${_intel_arch}
 # - source ${MKLROOT}/../bin/ifortvars.sh ${_intel_arch}
 # - export _mkllibs=" -L${MKLROOT}/lib/${_intel_arch} -l${_intel_lib} -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
