@@ -59,8 +59,8 @@ arithmetic.c(72): error: pointer to incomplete class type is not allowed
 compilation aborted for arithmetic.c (code 2)
 ...
 ```
-**in build(). EDIT: according to this, use**
+**Delete this row**
 ```
 sed -i '/^#undef HAVE_MATHERR/d' src/include/config.h.in
-between configure and make will make it work.
 ```
+between configure and make will make it work.
