@@ -1,7 +1,7 @@
 # R-MKL
-Experimental compiled binary of R.
+Experimental compiled binary of R with MKL.
 
-# Compile Status
+# Build Status
 
 [![Build Status](https://travis-ci.com/MitsuhaMiyamizu/R-MKL.svg?branch=master)](https://travis-ci.com/MitsuhaMiyamizu/R-MKL)
 
