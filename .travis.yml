@@ -30,27 +30,27 @@ script:
 # - export _intel_cc_opt=" -O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
   - export CC="icc"
   - export CXX="icpc"
-# - export F77="ifort"
-# - export FC="ifort"
+  - export F77="gfortran"
+  - export FC="gfortran"
   - export AR="xiar"
   - export LD="xild"
   - export _intel_arch=intel64
   - export _intel_lib=mkl_intel_lp64
   - export _gfortran_lib=mkl_gf_lp64
   - source ${MKLROOT}/../bin/compilervars.sh ${_intel_arch}
-  - source ${MKLROOT}/../bin/mklvars.sh ${_intel_arch}
+  - source ${MKLROOT}/bin/mklvars.sh ${_intel_arch}
 # - source ${MKLROOT}/../bin/ifortvars.sh ${_intel_arch}
 # - source ${MKLROOT}/bin/mklvars.sh ${_intel_arch}
 # - export _mkllibs=" -L${MKLROOT}/lib/${_intel_arch} -l${_intel_lib} -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
   - export _mkllibs="-L${MKLROOT}/lib/{_intel_arch} -Wl,--no-as-needed -l${_intel_lib} -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl"
   - export _gcc_opt=" -O3 -m64 -fopenmp -march=native"
-  - export LDFLAGS=" -fopenmp"
+  - export LDFLAGS="-fopenmp"
   - export CFLAGS="${_gcc_opt} -I${MKLROOT}/include"
   - export CXXFLAGS="${_gcc_opt} -I${MKLROOT}/include"
-# - export FFLAGS="${_gcc_opt} -I${MKLROOT}/include"
-# - export FCFLAGS="${_gcc_opt} -I${MKLROOT}/include"
-# - export FFLAGS="${_intel_cc_opt}"
-# - export FCFLAGS="${_intel_cc_opt}"
+  - export FFLAGS="${_gcc_opt} -I${MKLROOT}/include"
+  - export FCFLAGS="${_gcc_opt} -I${MKLROOT}/include"
+#  - export FFLAGS="${_intel_cc_opt}"
+#  - export FCFLAGS="${_intel_cc_opt}"
 # - export CFLAGS="${_intel_cc_opt}"
 # - export CXXFLAGS="${_intel_cc_opt}"
 # - export LDFLAGS="-fopenmp"
