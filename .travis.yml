@@ -86,9 +86,20 @@ script:
   - tar zxf R-4.0.2.tar.gz
   - cd R-4.0.2/
   - sed -i '/^#undef HAVE_MATHERR/d' src/include/config.h.in
-  - ./configure --prefix=/opt/R/R-4.0.2-intel-mkl --enable-R-shlib --with-blas="$MKL" --with-lapack
-#  - ./configure --prefix=/usr/ --libdir=/usr/lib --enable-R-shlib --with-blas="${_mkllibs}" --with-lapack
-# - ./configure  --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --with-blas="${_mkllibs}" --with-lapack --enable-R-shlib
-# - ./configure --with-blas="$MKL" --with-lapack --enable-R-shlib
+  - ./configure --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack
   - make
-#  - sudo -E env "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" env "PATH=$PATH" make install
+  - sudo -E env "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" env "PATH=$PATH" make install
+  - cd .. && tar cxf R-4.0.2.tar.gz R-4.0.2/
+  - source .bashrc
+  - Rscript R-benchmark.R
+  - Rscript dgemm.R
+deploy:
+    provider: releases
+    api_key: ${api_key}
+    file: R-4.0.2.tar.xz
+    skip_cleanup: true
+    name: $TRAVIS_BRANCH
+    prerelease: true
+    on:
+      tags: true
+      all_branches: true
