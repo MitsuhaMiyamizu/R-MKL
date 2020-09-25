@@ -19,6 +19,7 @@ addons:
       - texlive-latex-extra
       - libomp-dev
       - libx11-dev
+      - libpcre2-dev
 
 script:
   - sudo apt -qq build-dep r-base -y
