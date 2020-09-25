@@ -27,8 +27,7 @@ script:
   - export PATH=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/:$PATH
   - export INTEL_LICENSE_FILE=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/
   - export MKLROOT=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/mkl/
-  - export _intel_cc_opt=" -O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
-# - source /home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/compilervars.sh intel64
+# - export _intel_cc_opt=" -O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
   - export CC="icc"
   - export CXX="icpc"
   - export F77="ifort"
@@ -39,23 +38,31 @@ script:
   - export _intel_lib=mkl_intel_lp64
   - export _gfortran_lib=mkl_gf_lp64
   - source ${MKLROOT}/../bin/compilervars.sh ${_intel_arch}
-  - source ${MKLROOT}/bin/mklvars.sh ${_intel_arch}
-#  - export _mkllibs=" -L${MKLROOT}/lib/${_intel_arch} -l${_intel_lib} -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
-  - export _mkllibs=" -L${MKLROOT}/lib/${_intel_arch} -l${_intel_lib} -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
+# - source ${MKLROOT}/../bin/ifortvars.sh ${_intel_arch}
+# - source ${MKLROOT}/bin/mklvars.sh ${_intel_arch}
+# - export _mkllibs=" -L${MKLROOT}/lib/${_intel_arch} -l${_intel_lib} -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
+  - export _mkllibs="-L${MKLROOT}/lib/{_intel_arch} -Wl,--no-as-needed -l${_intel_lib} -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl"
+  - export _gcc_opt=" -O3 -m64 -fopenmp -march=native"
+  - export LDFLAGS=" -fopenmp"
+  - export CFLAGS="${_gcc_opt} -I${MKLROOT}/include"
+  - export CXXFLAGS="${_gcc_opt} -I${MKLROOT}/include"
+  - export FFLAGS="${_gcc_opt} -I${MKLROOT}/include"
+  - export FCFLAGS="${_gcc_opt} -I${MKLROOT}/include"
+  - export CFLAGS="${_intel_cc_opt}"
+  - export CXXFLAGS="${_intel_cc_opt}"
+  - export FFLAGS="${_intel_cc_opt}"
+  - export FCFLAGS="${_intel_cc_opt}"
+  - ./configure --prefix=/usr/ --libdir=/usr/lib --enable-R-shlib --with-blas="${_mkllibs}" --with-lapack
 #  - export LDFLAGS="-fopenmp"
 #  - export R_OPENMP_CFLAGS="-fopenmp"
 #  - export SHLIB_OPENMP_CFLAGS="-fopenmp"
 #  - export SHLIB_OPENMP_CXXFLAGS="-fopenmp"
 #  - export SHLIB_OPENMP_FFLAGS="-fopenmp"
 #  - export FLIBS=" -lgfortran -lifcore -lifport"
-#  - export CFLAGS="${_intel_cc_opt}"
-#  - export CXXFLAGS="${_intel_cc_opt}"
-#  - export FFLAGS="${_intel_cc_opt}"
-#  - export FCFLAGS="${_intel_cc_opt}"
   - wget "https://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz" -q
   - tar zxf R-4.0.2.tar.gz
   - cd R-4.0.2/
-#  - ./configure  --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --with-blas="${_mkllibs}" --with-lapack --enable-R-shlib
-  - ./configure --with-blas="$MKL" --with-lapack --enable-R-shlib
+# - ./configure  --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --with-blas="${_mkllibs}" --with-lapack --enable-R-shlib
+# - ./configure --with-blas="$MKL" --with-lapack --enable-R-shlib
   - make
 #  - sudo -E env "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" env "PATH=$PATH" make install
