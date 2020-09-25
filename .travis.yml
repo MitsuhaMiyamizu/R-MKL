@@ -7,7 +7,7 @@ matrix:
   include:
   - name: linux-x64
     os: linux
-    dist: xenial
+    dist: bionic
 #   env: EXTRA_FLAGS='target_cpu="x64"'
 addons:
   apt:
@@ -59,7 +59,7 @@ script:
   - export _intel_arch=intel64
   - export _intel_lib=mkl_intel_lp64
 #  - export LD_LIBRARY_PATH=/opt/intel/lib/intel64
-  - export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl/lib/intel64_lin/
+#  - export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl/lib/intel64_lin/
 #  - export _gfortran_lib=mkl_gf_lp64
 # - source /home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
 #  - source ${MKLROOT}/bin/mklvars.sh ${_intel_arch}
@@ -85,6 +85,7 @@ script:
   - wget "https://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz" -q
   - tar zxf R-4.0.2.tar.gz
   - cd R-4.0.2/
+  - sed -i '/^#define HAVE_MATHERR 1/d.' src/include/config.h.in
   - ./configure --prefix=/opt/R/R-4.0.2-intel-mkl --enable-R-shlib --with-blas="$MKL" --with-lapack
 #  - ./configure --prefix=/usr/ --libdir=/usr/lib --enable-R-shlib --with-blas="${_mkllibs}" --with-lapack
 # - ./configure  --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --with-blas="${_mkllibs}" --with-lapack --enable-R-shlib
