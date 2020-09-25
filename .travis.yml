@@ -7,7 +7,7 @@ matrix:
   include:
   - name: linux-x64
     os: linux
-    dist: bionic
+    dist: xenial
 #   env: EXTRA_FLAGS='target_cpu="x64"'
 addons:
   apt:
