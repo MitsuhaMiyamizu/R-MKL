@@ -58,6 +58,8 @@ script:
   - export LD="xild"
   - export _intel_arch=intel64
   - export _intel_lib=mkl_intel_lp64
+#  - export LD_LIBRARY_PATH=/opt/intel/lib/intel64
+  - export LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl/lib/intel64_lin/
 #  - export _gfortran_lib=mkl_gf_lp64
 # - source /home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
 #  - source ${MKLROOT}/bin/mklvars.sh ${_intel_arch}
