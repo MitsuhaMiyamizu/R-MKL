@@ -13,7 +13,6 @@ addons:
       - texlive 
       - texlive-fonts-extra 
       - texlive-latex-extra
-#     - libomp-dev
       - libx11-dev
       - libpcre2-dev
       - libjpeg-dev
@@ -38,7 +37,7 @@ script:
   - export _intel_lib=mkl_intel_lp64
   - export MKL="-L${MKLROOT}/lib/intel64 -Wl,--as-needed -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lpthread -lm -ldl"
   - export _gcc_opt="-O3 -fPIC -m64 -fopenmp -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
-  - export LDFLAGS="-fopenmp"
+  - export LDFLAGS="-qopenmp"
   - export CFLAGS="${_gcc_opt}"
   - export CXXFLAGS="${_gcc_opt}"
   - export FFLAGS="${_gcc_opt}"
