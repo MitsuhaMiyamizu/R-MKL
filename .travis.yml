@@ -1,6 +1,6 @@
 branches:
   only:
-    - /v\d+\.\d+\.+\d+_+[a-z]+_+[a-z]+_+[a-z]*/
+    #    - /v\d+\.\d+\.+\d+_+[a-z]+_+[a-z]+_+[a-z]+_+[a-z]*/
 language: c
 arch: amd64
 os: linux

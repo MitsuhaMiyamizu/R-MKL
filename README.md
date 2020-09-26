@@ -35,11 +35,13 @@ For more information, visit:
 
 # Troubleshooting
 
-https://software.intel.com/en-us/comment/1951508
+1) https://software.intel.com/en-us/comment/1951508
 
-https://community.intel.com/t5/Intel-C-Compiler/Error-when-compiling-R-from-source-code-ubuntu-18-04/td-p/1176401
+2) https://community.intel.com/t5/Intel-oneAPI-Math-Kernel-Library/Build-R-with-Intel-MKL-shared-library/td-p/1034642?profile.language=en
 
-https://aur.archlinux.org/packages/r-mkl/
+3) https://community.intel.com/t5/Intel-C-Compiler/Error-when-compiling-R-from-source-code-ubuntu-18-04/td-p/1176401
+
+4) https://aur.archlinux.org/packages/r-mkl/
 
 ```
 using icc to build it by uncomment the line # _CC="icc" and get:
