@@ -52,6 +52,8 @@ script:
   - export LD_LIBRARY_PATH=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/compilers_and_libraries_2020.2.254/linux/compiler/lib/intel64_lin/
   - source /home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
   - export FLIBS=" -lgfortran -lifcore -lifport"
+  - ifort --version
+  - icc --version
   - wget "https://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz" -q
   - tar zxf R-4.0.2.tar.gz && rm R-4.0.2.tar.gz
   - cd R-4.0.2/
