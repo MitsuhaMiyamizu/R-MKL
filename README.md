@@ -19,6 +19,8 @@ https://blog.ajsuarez.com/posts/compiling-r-icc-mkl/
 
 # Troubleshooting
 
+https://software.intel.com/en-us/comment/1951508
+
 https://community.intel.com/t5/Intel-C-Compiler/Error-when-compiling-R-from-source-code-ubuntu-18-04/td-p/1176401
 
 https://aur.archlinux.org/packages/r-mkl/
