@@ -100,8 +100,9 @@ deploy:
     api_key: ${api_key}
     file: R-4.0.2.tar.xz
     skip_cleanup: true
-    name: $TRAVIS_BRANCH
+    file_glob: true
     prerelease: true
     on:
       tags: true
       all_branches: true
+      repo: MitsuhaMiyamizu/R-MKL
