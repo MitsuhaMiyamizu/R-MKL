@@ -17,6 +17,22 @@ https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=r-mkl
 
 https://blog.ajsuarez.com/posts/compiling-r-icc-mkl/
 
+# Notes
+
+According to the manual provided for developers by Intel, it's possible for you to mix openmp object files compiled with ```icc``` and ```ifort```, however, you cannot mix object files compiled by ```ifort``` and ```gfortran```, their examples are given below:
+
+```
+icc -qopenmp -c ibar.c
+gcc -fopenmp -c gbar.c
+ifort -qopenmp -c foo.f
+ifort -qopenmp foo.o ibar.o gbar.o
+```
+So, we think it's possible to set LDFLAGS to qopenmp, and since 19.1 supports that, we finally chose to pass this parameter to ```icc```, which may circumvent some issues during the compilation.
+
+For more information, visit: 
+
+https://software.intel.com/content/www/us/en/develop/documentation/cpp-compiler-developer-guide-and-reference/top/optimization-and-programming-guide/openmp-support/openmp-library-support/using-the-openmp-libraries.html
+
 # Troubleshooting
 
 https://software.intel.com/en-us/comment/1951508
