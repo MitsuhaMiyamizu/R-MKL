@@ -1,7 +1,8 @@
 branches:
-  only:
+  except:
+    - master
     #  - /[0-9].+[0-9]_([a-z]|[A-Z])*[0-9]*/
-  - /v\d+\.\d+\.+\d+_+[a-z]+_+[a-z]*/
+    #- /v\d+\.\d+\.+\d+_+[a-z]+_+[a-z]*/
 language: c
   #jobs:
   #include:
@@ -86,7 +87,7 @@ script:
   - cd R-4.0.2/
   - sed -i '/^#undef HAVE_MATHERR/d' src/include/config.h.in
   - ./configure --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack
-  - make
+  - make -j N
   - sudo -E env "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" env "PATH=$PATH" make install
   - ldd /usr/lib/R/lib/libR.so 
   - cd .. && tar cvf R-4.0.2.tar.gz R-4.0.2/
@@ -96,8 +97,8 @@ script:
 deploy:
   provider: releases
   token: ${api_key}
+  skip_cleanup: true
   file: R-4.0.2.tar.gz
-  #skip_cleanup: true
   overwrite: true
   on:
     tags: true
