@@ -87,7 +87,7 @@ script:
   - cd R-4.0.2/
   - sed -i '/^#undef HAVE_MATHERR/d' src/include/config.h.in
   - ./configure --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack
-  - make -j N
+  - make
   - sudo -E env "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" env "PATH=$PATH" make install
   - ldd /usr/lib/R/lib/libR.so 
   - cd .. && tar cvf R-4.0.2.tar.gz R-4.0.2/
@@ -101,6 +101,6 @@ deploy:
   file: R-4.0.2.tar.gz
   overwrite: true
   on:
-    #tags: true
+    tags: true
     all_branches: true
     repo: MitsuhaMiyamizu/R-MKL
