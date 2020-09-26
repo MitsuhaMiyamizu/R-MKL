@@ -65,7 +65,8 @@ sed -i '/^#undef HAVE_MATHERR/d' src/include/config.h.in
 ```
 between configure and make will make it work.
 
-***license***
+# License
+
 _Please read Intel Non-Commercial License for more information_
 [Intel End User License Agreement for Developer](https://software.intel.com/content/dam/develop/external/us/en/documents/pdf/intel-developer-tools-eula-09-03-19.pdf)
 [Intel Simplified Software License](https://software.intel.com/content/dam/develop/external/us/en/documents/pdf/intel-simplified-software-license.pdf)
