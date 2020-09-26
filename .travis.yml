@@ -36,7 +36,7 @@ script:
   - export _intel_arch=intel64
   - export _intel_lib=mkl_intel_lp64
   - source /opt/intel/mkl/bin/mklvars.sh intel64
-  - export MKL="-L${MKLROOT}/lib/${_intel_arch} -Wl,--as-needed -l${_intel_lib} -lmkl_intel_thread -lmkl_core -lpthread -lm -ldl"
+  - export MKL="-L${MKLROOT}/lib/intel64 -Wl,--as-needed -l${_intel_lib} -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
   - export _gcc_opt=" -O3 -fPIC -m64 -fopenmp -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
   - export CFLAGS="${_gcc_opt}"
   - export CXXFLAGS="${_gcc_opt}"
