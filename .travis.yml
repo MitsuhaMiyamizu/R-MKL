@@ -1,8 +1,7 @@
 branches:
-  except:
-    - dev
+  only: 
     #  - /[0-9].+[0-9]_([a-z]|[A-Z])*[0-9]*/
-    #- /v\d+\.\d+\.+\d+_+[a-z]+_+[a-z]*/
+    - /v\d+\.\d+\.+\d+_+[a-z]+_+[a-z]*/
 language: c
   #jobs:
   #include:
@@ -46,13 +45,14 @@ script:
 # - export INTEL_LICENSE_FILE=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/
 # - export MKLROOT=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/mkl/
 # - export _intel_cc_opt=" -O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
-  - export MKL="-L${MKLROOT}/lib/intel64 -Wl,--as-needed -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lpthread -lm -ldl"
-  - export _gcc_opt=" -O3 -m64 -fopenmp -march=native"
-  - export LDFLAGS=" -fopenmp"
-  - export CFLAGS="${_gcc_opt} -I${MKLROOT}/include"
-  - export CXXFLAGS="${_gcc_opt} -I${MKLROOT}/include"
-  - export FFLAGS="${_gcc_opt} -I${MKLROOT}/include"
-  - export FCFLAGS="${_gcc_opt} -I${MKLROOT}/include"
+  - export _intel_lib=mkl_intel_lp64
+  - export MKL="-L${MKLROOT}/lib/intel64 -Wl,--as-needed -l${_intel_lib} -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
+  - export _gcc_opt=" -O3 -fPIC -m64 -fopenmp -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
+  - export LDFLAGS="-qopenmp"
+  - export CFLAGS="${_gcc_opt}"
+  - export CXXFLAGS="${_gcc_opt}"
+  - export FFLAGS="${_gcc_opt}"
+  - export FCFLAGS="${_gcc_opt}"
   - export CC="icc"
   - export CXX="icpc"
   - export F77="ifort"
@@ -81,7 +81,7 @@ script:
 # - export SHLIB_OPENMP_CFLAGS="-fopenmp"
 # - export SHLIB_OPENMP_CXXFLAGS="-fopenmp"
 # - export SHLIB_OPENMP_FFLAGS="-fopenmp"
-# - export FLIBS=" -lgfortran -lifcore -lifport"
+  - export FLIBS=" -lgfortran -lifcore -lifport"
   - wget "https://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz" -q
   - tar zxf R-4.0.2.tar.gz && rm R-4.0.2.tar.gz
   - cd R-4.0.2/
