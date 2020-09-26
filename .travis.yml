@@ -99,14 +99,12 @@ script:
   - Rscript R-benchmark.R
   - Rscript dgemm.R
 deploy:
-    provider: releases
-    token: ${api_key}
-    file: R-4.0.2.tar.xz
-    skip_cleanup: true
-    file_glob: true
-    prerelease: true
-    draft: true
-    on:
-      tags: true
-      all_branches: true
-      repo: MitsuhaMiyamizu/R-MKL
+  provider: releases
+  token: ${api_key}
+  file: R-4.0.2.tar.xz
+  skip_cleanup: true
+  overwrite: true
+  on:
+    tags: true
+    all_branches: true
+    repo: MitsuhaMiyamizu/R-MKL
