@@ -43,6 +43,11 @@ For more information, visit:
 
 4) https://aur.archlinux.org/packages/r-mkl/
 
+5) https://jiangjun.netlify.app/post/compile-r-enable-mkl/
+
+6) https://cran.r-project.org/doc/manuals/r-release/R-admin.html
+
+7) https://community.intel.com/t5/Intel-oneAPI-Math-Kernel-Library/Build-R-with-Intel-MKL-shared-library/td-p/1034642?profile.language=en
 ```
 using icc to build it by uncomment the line # _CC="icc" and get:
 
