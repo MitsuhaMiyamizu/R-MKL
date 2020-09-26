@@ -13,7 +13,7 @@ addons:
       - texlive 
       - texlive-fonts-extra 
       - texlive-latex-extra
-      - libomp-dev
+#     - libomp-dev
       - libx11-dev
       - libpcre2-dev
       - libjpeg-dev
