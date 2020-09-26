@@ -62,26 +62,26 @@ script:
   - export _intel_arch=intel64
   - export _intel_lib=mkl_intel_lp64
   - export LD_LIBRARY_PATH=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/compilers_and_libraries_2020.2.254/linux/compiler/lib/intel64_lin/
-#  - export _gfortran_lib=mkl_gf_lp64
+# - export _gfortran_lib=mkl_gf_lp64
   - source /home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
 # - export _mkllibs=" -L${MKLROOT}/lib/${_intel_arch} -l${_intel_lib} -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
-#  - export _mkllibs="-L${MKLROOT}/lib/{_intel_arch} -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_gf_lp64.a ${MKLROOT}/lib/intel64/libmkl_gnu_thread.a ${MKLROOT}/lib/intel64/libmkl_core.a -Wl,--end-group -l${_intel_lib} -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl"
-#  - export _gcc_opt=" -O3 -m64 -fopenmp -march=native"
-#  - export LDFLAGS="-fopenmp"
-#  - export CFLAGS="${_gcc_opt} -I${MKLROOT}/include"
-#  - export CXXFLAGS="${_gcc_opt} -I${MKLROOT}/include"
-#  - export FFLAGS="${_gcc_opt} -I${MKLROOT}/include"
-#  - export FCFLAGS="${_gcc_opt} -I${MKLROOT}/include"
-#  - export FFLAGS="${_intel_cc_opt}"
-#  - export FCFLAGS="${_intel_cc_opt}"
+# - export _mkllibs="-L${MKLROOT}/lib/{_intel_arch} -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_gf_lp64.a ${MKLROOT}/lib/intel64/libmkl_gnu_thread.a ${MKLROOT}/lib/intel64/libmkl_core.a -Wl,--end-group -l${_intel_lib} -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl"
+# - export _gcc_opt=" -O3 -m64 -fopenmp -march=native"
+# - export LDFLAGS="-fopenmp"
+# - export CFLAGS="${_gcc_opt} -I${MKLROOT}/include"
+# - export CXXFLAGS="${_gcc_opt} -I${MKLROOT}/include"
+# - export FFLAGS="${_gcc_opt} -I${MKLROOT}/include"
+# - export FCFLAGS="${_gcc_opt} -I${MKLROOT}/include"
+# - export FFLAGS="${_intel_cc_opt}"
+# - export FCFLAGS="${_intel_cc_opt}"
 # - export CFLAGS="${_intel_cc_opt}"
 # - export CXXFLAGS="${_intel_cc_opt}"
 # - export LDFLAGS="-fopenmp"
-#  - export R_OPENMP_CFLAGS="-fopenmp"
-#  - export SHLIB_OPENMP_CFLAGS="-fopenmp"
-#  - export SHLIB_OPENMP_CXXFLAGS="-fopenmp"
-#  - export SHLIB_OPENMP_FFLAGS="-fopenmp"
-#  - export FLIBS=" -lgfortran -lifcore -lifport"
+# - export R_OPENMP_CFLAGS="-fopenmp"
+# - export SHLIB_OPENMP_CFLAGS="-fopenmp"
+# - export SHLIB_OPENMP_CXXFLAGS="-fopenmp"
+# - export SHLIB_OPENMP_FFLAGS="-fopenmp"
+# - export FLIBS=" -lgfortran -lifcore -lifport"
   - wget "https://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz" -q
   - tar zxf R-4.0.2.tar.gz && rm R-4.0.2.tar.gz
   - cd R-4.0.2/
@@ -101,6 +101,6 @@ deploy:
   file: R-4.0.2.tar.gz
   overwrite: true
   on:
-    tags: true
+    #tags: true
     all_branches: true
     repo: MitsuhaMiyamizu/R-MKL
