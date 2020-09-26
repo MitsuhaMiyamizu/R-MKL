@@ -1,14 +1,16 @@
 branches:
-  except:
-  - dev
-  - /[0-9].+[0-9]_([a-z]|[A-Z])*[0-9]*/
+  only:
+  - master
+#  - /[0-9].+[0-9]_([a-z]|[A-Z])*[0-9]*/
 language: c
-matrix:
-  include:
-  - name: linux-x64
-    os: linux
-    dist: bionic
-#   env: EXTRA_FLAGS='target_cpu="x64"'
+  #jobs:
+  #include:
+  #- name: linux-x64
+  #  os: linux
+  #  dist: bionic
+arch: amd64
+os: linux
+dist: bionic
 addons:
   apt:
     packages:
@@ -97,11 +99,12 @@ script:
   - Rscript dgemm.R
 deploy:
     provider: releases
-    api_key: ${api_key}
+    token: ${api_key}
     file: R-4.0.2.tar.xz
     skip_cleanup: true
     file_glob: true
     prerelease: true
+    draft: true
     on:
       tags: true
       all_branches: true
