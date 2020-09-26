@@ -33,11 +33,11 @@ script:
   - tar xzf intel.tar.gz
   - export PATH=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/:$PATH
   - export INTEL_LICENSE_FILE=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/
+  - source /opt/intel/mkl/bin/mklvars.sh intel64
   - export _intel_arch=intel64
   - export _intel_lib=mkl_intel_lp64
-  - source /opt/intel/mkl/bin/mklvars.sh intel64
   - export MKL="-L${MKLROOT}/lib/intel64 -Wl,--as-needed -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
-  - export _gcc_opt=" -O3 -fPIC -m64 -fopenmp -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
+  - export _gcc_opt="-O3 -fPIC -m64 -fopenmp -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
   - export LDFLAGS="-fopenmp"
   - export CFLAGS="${_gcc_opt}"
   - export CXXFLAGS="${_gcc_opt}"
