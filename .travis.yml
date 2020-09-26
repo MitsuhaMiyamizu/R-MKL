@@ -35,7 +35,7 @@ script:
   - export INTEL_LICENSE_FILE=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/
   - source /opt/intel/mkl/bin/mklvars.sh intel64
   - export _intel_lib=mkl_intel_lp64
-  - export MKL="-L${MKLROOT}/lib/intel64 -Wl,--as-needed -l${_intel_lib} -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
+  - export MKL="-L${MKLROOT}/lib/intel64 -Wl,--as-needed -l${_intel_lib} -lmkl_intel_thread -lmkl_core -lpthread -lm -ldl"
   - export _gcc_opt=" -O3 -fPIC -m64 -fopenmp -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
   - export CFLAGS="${_gcc_opt}"
   - export CXXFLAGS="${_gcc_opt}"
@@ -60,7 +60,6 @@ script:
   - ./configure --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack
   - make
   - sudo -E env "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" env "PATH=$PATH" make install
-  - ldd /usr/lib/R/lib/libR.so 
   - cd .. && tar cvf R-4.0.2.tar.gz R-4.0.2/
   - ls -al
   - Rscript R-benchmark.R
