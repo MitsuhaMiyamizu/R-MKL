@@ -1,5 +1,5 @@
 # R-MKL
-Experimental compiled binary of R with performance improvement by MKL.
+R 4.0.2 built with Intel C++ Compiler (icc) /Intel Fortran Compiler (ifort) / Math Kernel Library (MKL) for research purposes only.
 
 # Build Status
 
@@ -64,3 +64,12 @@ compilation aborted for arithmetic.c (code 2)
 sed -i '/^#undef HAVE_MATHERR/d' src/include/config.h.in
 ```
 between configure and make will make it work.
+
+***license***
+_Please read Intel Non-Commercial License for more information_
+[Intel End User License Agreement for Developer](https://software.intel.com/content/dam/develop/external/us/en/documents/pdf/intel-developer-tools-eula-09-03-19.pdf)
+[Intel Simplified Software License](https://software.intel.com/content/dam/develop/external/us/en/documents/pdf/intel-simplified-software-license.pdf)
+
+***Warning***
+
+_THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE._
