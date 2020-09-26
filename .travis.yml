@@ -61,6 +61,7 @@ script:
   - sudo -E env "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" env "PATH=$PATH" make install
   - cd .. && tar cvf R-4.0.2.tar.gz R-4.0.2/
   - ls -al
+  - ldd /usr/lib/R/lib/libR.so
   - Rscript R-benchmark.R
   - Rscript dgemm.R
 deploy:
