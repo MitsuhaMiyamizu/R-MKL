@@ -101,8 +101,8 @@ script:
 deploy:
   provider: releases
   token: ${api_key}
-  file: R-4.0.2.tar.xz
-  skip_cleanup: true
+  file: R-4.0.2.tar.gz
+  #skip_cleanup: true
   overwrite: true
   on:
     tags: true
