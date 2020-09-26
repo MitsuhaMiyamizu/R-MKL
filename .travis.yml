@@ -50,7 +50,7 @@ script:
   - export CXXFLAGS="${_gcc_opt} -I${MKLROOT}/include"
   - export FFLAGS="${_gcc_opt} -I${MKLROOT}/include"
   - export FCFLAGS="${_gcc_opt} -I${MKLROOT}/include"
-  - export CC="icc -std=c99"
+  - export CC="icc"
   - export CXX="icpc"
   - export F77="ifort"
   - export FC="ifort"
