@@ -36,7 +36,7 @@ script:
   - source /opt/intel/mkl/bin/mklvars.sh intel64
   - export _intel_lib=mkl_intel_lp64
   - export MKL="-L${MKLROOT}/lib/intel64 -Wl,--as-needed -l${_intel_lib} -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl"
-  - export _gcc_opt="-O3 -fPIC -m64 -fopenmp -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
+  - export _gcc_opt=" -O3 -fPIC -m64 -fopenmp -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
   - export CFLAGS="${_gcc_opt}"
   - export CXXFLAGS="${_gcc_opt}"
   - export FFLAGS="${_gcc_opt}"
@@ -51,7 +51,6 @@ script:
   - export _intel_lib=mkl_intel_lp64
   - export LD_LIBRARY_PATH=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/compilers_and_libraries_2020.2.254/linux/compiler/lib/intel64_lin/
   - source /home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
-  - export FLIBS=" -lgfortran -lifcore -lifport"
   - ifort --version
   - icc --version
   - wget "https://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz" -q
