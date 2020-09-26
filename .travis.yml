@@ -101,6 +101,6 @@ deploy:
   file: R-4.0.2.tar.gz
   overwrite: true
   on:
-    tags: true
+    #tags: true
     all_branches: true
     repo: MitsuhaMiyamizu/R-MKL
