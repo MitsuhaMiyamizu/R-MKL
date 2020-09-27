@@ -51,6 +51,8 @@ For more information, visit:
 
 8) https://stackoverflow.com/questions/46413691/r-make-install-of-3-4-1-on-unix-is-failing-test-reg-tests-1d/56957438
 
+Note that the DRP's recommendation of ```date +%Z``` does not work with the 3.6 unit tests.
+
 ```
 using icc to build it by uncomment the line # _CC="icc" and get:
 
