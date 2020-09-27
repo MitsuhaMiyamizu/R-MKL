@@ -26,7 +26,7 @@
 # aleatoires r�elles. Publ. Inst. Statis. Univ. Paris 19 Fasc 4, 1-47.
 #
 # type source("c:/<dir>/R2.R") to start the test
-
+.libPaths("/home/travis/build/MitsuhaMiyamizu/R-MKL/R/library/")
 runs <- 3			# Number of times the tests are executed
 times <- rep(0, 15); dim(times) <- c(5,3)
 require(Matrix)		# Optimized matrix operations

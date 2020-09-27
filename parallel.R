@@ -1,5 +1,4 @@
-install.packages("foreach")
-install.packages("doParallel")
+.libPaths("/home/travis/build/MitsuhaMiyamizu/R-MKL/R/library/")
 library("foreach")
 library("doParallel")
 
