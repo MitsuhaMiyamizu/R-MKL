@@ -1,4 +1,6 @@
-.libPaths("/home/travis/build/MitsuhaMiyamizu/R-MKL/R/library/")
+.libPaths('/home/travis/build/MitsuhaMiyamizu/R-MKL/R/library/')
+install.packages("foreach")
+install.packages("doParallel")
 library("foreach")
 library("doParallel")
 

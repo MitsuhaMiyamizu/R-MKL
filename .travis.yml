@@ -63,7 +63,6 @@ script:
   - ldd /usr/lib/R/lib/libR.so
   - mkdir /home/travis/build/MitsuhaMiyamizu/R-MKL/R/
   - mkdir /home/travis/build/MitsuhaMiyamizu/R-MKL/R/library/
-  - R CMD INSTALL -l /home/travis/build/MitsuhaMiyamizu/R-MKL/R/library/ foreach SuppDists
   - Rscript R-benchmark.R
   - Rscript dgemm.R
   - Rscript parallel.R
