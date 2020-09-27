@@ -48,6 +48,9 @@ For more information, visit:
 6) https://cran.r-project.org/doc/manuals/r-release/R-admin.html
 
 7) https://community.intel.com/t5/Intel-oneAPI-Math-Kernel-Library/Build-R-with-Intel-MKL-shared-library/td-p/1034642?profile.language=en
+
+8) https://stackoverflow.com/questions/46413691/r-make-install-of-3-4-1-on-unix-is-failing-test-reg-tests-1d/56957438
+
 ```
 using icc to build it by uncomment the line # _CC="icc" and get:
 
