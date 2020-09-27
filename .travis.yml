@@ -54,7 +54,7 @@ script:
   - tar zxf R-4.0.2.tar.gz && rm R-4.0.2.tar.gz
   - cd R-4.0.2/
   - sed -i '/^#undef HAVE_MATHERR/d' src/include/config.h.in
-  - ./configure --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack --with-tcltk --disable-R-profiling
+  - ./configure --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack --with-tcltk --disable-R-profiling LIBnn=lib
   - make
   - cd .. && tar cvf R-4.0.2.tar.gz R-4.0.2/
   - cd R-4.0.2/
