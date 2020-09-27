@@ -27,7 +27,7 @@ gcc -fopenmp -c gbar.c
 ifort -qopenmp -c foo.f
 ifort -qopenmp foo.o ibar.o gbar.o
 ```
-So, we think it's possible to set LDFLAGS to qopenmp, and since 19.1 supports that, we finally chose to pass this parameter to ```icc```, which may not only circumvent some issues during the compilation, but also comply with the Dev manual provided by Intel, we thought it might be more reasonable to choose ```qopenmp``` rather than ```fopenmp```, albeit according to the license of LLVM, ```libomp-dev``` is equivalent to openmp library published officially by Intel.
+So, we think it's possible to set ```LDFLAGS``` to ```qopenmp```, and since 19.1 supports that, we finally chose to pass this parameter to ```icc```, which may not only circumvent some issues during the compilation, but also comply with the Dev manual provided by Intel, we thought it might be more reasonable to choose ```qopenmp``` rather than ```fopenmp```, albeit according to the license of LLVM, ```libomp-dev``` is equivalent to openmp library published officially by Intel.
 
 For more information, visit: 
 
