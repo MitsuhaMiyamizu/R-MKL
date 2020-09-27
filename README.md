@@ -35,14 +35,19 @@ For more information, visit:
 
 # Troubleshooting
 
-https://software.intel.com/en-us/comment/1951508
+1) https://software.intel.com/en-us/comment/1951508
 
-https://community.intel.com/t5/Intel-C-Compiler/Error-when-compiling-R-from-source-code-ubuntu-18-04/td-p/1176401
+2) https://community.intel.com/t5/Intel-C-Compiler/Error-when-compiling-R-from-source-code-ubuntu-18-04/td-p/1176401
 
-https://aur.archlinux.org/packages/r-mkl/
+3) https://aur.archlinux.org/packages/r-mkl/
 
-https://stackoverflow.com/questions/46413691/r-make-install-of-3-4-1-on-unix-is-failing-test-reg-tests-1d/56957438
+4) https://stackoverflow.com/questions/46413691/r-make-install-of-3-4-1-on-unix-is-failing-test-reg-tests-1d/56957438
 
+5) https://community.intel.com/t5/Intel-oneAPI-Math-Kernel-Library/Build-R-with-Intel-MKL-shared-library/td-p/1034642?profile.language=en
+
+6) https://cran.r-project.org/doc/manuals/r-release/R-admin.html
+
+7) https://jiangjun.netlify.app/post/compile-r-enable-mkl/
 ```
 using icc to build it by uncomment the line # _CC="icc" and get:
 
