@@ -1,3 +1,5 @@
+install.packages("foreach")
+install.packages("doParallel")
 library("foreach")
 library("doParallel")
 
