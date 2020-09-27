@@ -63,6 +63,8 @@ script:
   - ldd /usr/lib/R/lib/libR.so
   - Rscript R-benchmark.R
   - Rscript dgemm.R
+  - Rscript parallel.R
+  - Rscript multitest.R
 deploy:
   provider: releases
   token: ${api_key}
