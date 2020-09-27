@@ -41,6 +41,8 @@ https://community.intel.com/t5/Intel-C-Compiler/Error-when-compiling-R-from-sour
 
 https://aur.archlinux.org/packages/r-mkl/
 
+https://stackoverflow.com/questions/46413691/r-make-install-of-3-4-1-on-unix-is-failing-test-reg-tests-1d/56957438
+
 ```
 using icc to build it by uncomment the line # _CC="icc" and get:
 
