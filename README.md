@@ -48,6 +48,9 @@ For more information, visit:
 6) https://cran.r-project.org/doc/manuals/r-release/R-admin.html
 
 7) https://jiangjun.netlify.app/post/compile-r-enable-mkl/
+
+Note that the DRP's recommendation of ```date +%Z``` does not work with the 3.6 unit tests.
+
 ```
 using icc to build it by uncomment the line # _CC="icc" and get:
 
