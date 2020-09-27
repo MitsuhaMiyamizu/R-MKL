@@ -65,6 +65,7 @@ script:
   - Rscript dgemm.R
   - Rscript parallel.R
   - Rscript multitest.R
+  - cat bench-25.R | time R --slave --no-save
 deploy:
   provider: releases
   token: ${api_key}
