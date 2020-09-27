@@ -55,6 +55,8 @@ script:
   - cd R-4.0.2/
   - ./configure --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack --disable-R-profiling --with-tcltk
   - make
+    #  - export TZ=`date +%Z`
+  - make check
   - cd .. && tar cvf R-4.0.2.tar.gz R-4.0.2/
   - cd R-4.0.2/
   - sudo -E env "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" env "PATH=$PATH" make install
