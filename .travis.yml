@@ -60,7 +60,6 @@ script:
   - cd R-4.0.2/
   - sudo -E env "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" env "PATH=$PATH" make install
   - cd ..
-  - ls -al
   - ldd /usr/lib/R/lib/libR.so
   - Rscript R-benchmark.R
   - Rscript dgemm.R
