@@ -27,7 +27,7 @@
 #
 # type source("c:/<dir>/R2.R") to start the test
 .libPaths("/home/travis/build/MitsuhaMiyamizu/R-MKL/R/library/")
-install.packages("SuppDists")
+install.packages("SuppDists", repos='https://cloud.r-project.org/')
 runs <- 3			# Number of times the tests are executed
 times <- rep(0, 15); dim(times) <- c(5,3)
 require(Matrix)		# Optimized matrix operations

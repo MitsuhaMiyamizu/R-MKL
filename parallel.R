@@ -1,6 +1,6 @@
 .libPaths('/home/travis/build/MitsuhaMiyamizu/R-MKL/R/library/')
-install.packages("foreach")
-install.packages("doParallel")
+install.packages("foreach", repos='https://cloud.r-project.org/')
+install.packages("doParallel", repos='https://cloud.r-project.org/')
 library("foreach")
 library("doParallel")
 
