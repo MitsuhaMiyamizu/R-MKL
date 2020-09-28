@@ -20,6 +20,7 @@ addons:
       - libtiff-dev
       - libxmu-dev
       - libxt-dev
+      - zstd
 
 script:
   - sudo apt -qq build-dep r-base -y
@@ -29,7 +30,7 @@ script:
   - sudo apt -qq update
   - sudo apt -qq install intel-mkl-2020.3-111
   - wget "${ICCDL}" -q
-  - tar xzf intel.tar.gz
+  - tar xzf intel.tar.gz && rm intel.tar.gz
   - export PATH=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/:$PATH
   - export INTEL_LICENSE_FILE=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/
   - source /opt/intel/mkl/bin/mklvars.sh intel64
@@ -56,7 +57,7 @@ script:
   - sed -i '/^#undef HAVE_MATHERR/d' src/include/config.h.in
   - ./configure --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack --with-tcltk --disable-R-profiling LIBnn=lib
   - make
-  - cd .. && zip -r R-4.0.2.zip R-4.0.2/
+  - cd .. && tar -I zstd -cf R-4.0.2.tar.zst R-4.0.2/
   - cd R-4.0.2/
   - sudo -E env "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" env "PATH=$PATH" make install
   - cd ..
@@ -65,7 +66,7 @@ deploy:
   provider: releases
   token: ${api_key}
   skip_cleanup: true
-  file: R-4.0.2.zip
+  file: R-4.0.2.tar.zst
   overwrite: true
   on:
     tags: true
