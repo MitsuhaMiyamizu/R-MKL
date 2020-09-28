@@ -61,22 +61,11 @@ script:
   - sudo -E env "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" env "PATH=$PATH" make install
   - cd ..
   - ldd /usr/lib/R/lib/libR.so
-  - mkdir /home/travis/build/MitsuhaMiyamizu/R-MKL/R/
-  - mkdir /home/travis/build/MitsuhaMiyamizu/R-MKL/R/library/
-  - Rscript pkg.R
-  - zip -r pkg.zip /home/travis/build/MitsuhaMiyamizu/R-MKL/R/
-  - Rscript R-benchmark.R
-  - Rscript dgemm.R
-  - Rscript parallel.R
-  - Rscript multitest.R
-  - cat bench-25.R | time R --slave --no-save
 deploy:
   provider: releases
   token: ${api_key}
   skip_cleanup: true
-  file: 
-    - R-4.0.2.zip
-    - pkg.zip
+  file: R-4.0.2.zip
   overwrite: true
   on:
     tags: true
