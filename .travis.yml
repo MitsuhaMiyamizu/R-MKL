@@ -56,13 +56,15 @@ script:
   - sed -i '/^#undef HAVE_MATHERR/d' src/include/config.h.in
   - ./configure --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack --with-tcltk --disable-R-profiling LIBnn=lib
   - make
-  - cd .. && tar cvf R-4.0.2.tar.gz R-4.0.2/
+  - cd .. && zip -r R-4.0.2.zip R-4.0.2/
   - cd R-4.0.2/
   - sudo -E env "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" env "PATH=$PATH" make install
   - cd ..
   - ldd /usr/lib/R/lib/libR.so
   - mkdir /home/travis/build/MitsuhaMiyamizu/R-MKL/R/
   - mkdir /home/travis/build/MitsuhaMiyamizu/R-MKL/R/library/
+  - Rscript pkg.R
+  - zip -r pkg.zip /home/travis/build/MitsuhaMiyamizu/R-MKL/R/
   - Rscript R-benchmark.R
   - Rscript dgemm.R
   - Rscript parallel.R
@@ -72,7 +74,9 @@ deploy:
   provider: releases
   token: ${api_key}
   skip_cleanup: true
-  file: R-4.0.2.tar.gz
+  file: 
+    - R-4.0.2.zip
+    - pkg.zip
   overwrite: true
   on:
     tags: true
