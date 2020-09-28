@@ -20,14 +20,15 @@ addons:
       - libtiff-dev
       - libxmu-dev
       - libxt-dev
+      - zstd
 
 script:
   - sudo apt -qq build-dep r-base -y
   - wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
   - sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
   - sudo sh -c 'echo deb https://apt.repos.intel.com/mkl all main > /etc/apt/sources.list.d/intel-mkl.list'
-  - sudo apt -qq update
-  - sudo apt -qq install intel-mkl-2020.3-111
+  - sudo apt-get -qq update
+  - sudo apt-get -qq install intel-mkl-2020.3-111
   - wget "${ICCDL}" -q
   - tar xzf intel.tar.gz
   - export PATH=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/:$PATH
@@ -55,7 +56,7 @@ script:
   - cd R-4.0.2/
   - ./configure --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack --disable-R-profiling --with-tcltk
   - make
-  - cd .. && tar cvf R-4.0.2.tar.gz R-4.0.2/
+  - cd .. && tar -I zstd -cf R-4.0.2.tar.zst R-4.0.2/
   - cd R-4.0.2/
   - sudo -E env "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" env "PATH=$PATH" make install
   - cd ..
@@ -64,7 +65,7 @@ deploy:
   provider: releases
   token: ${api_key}
   skip_cleanup: true
-  file: R-4.0.2.tar.gz
+  file: R-4.0.2.tar.zst
   overwrite: true
   on:
     tags: true
