@@ -30,14 +30,14 @@ script:
   - sudo apt-get -qq update
   - sudo apt-get -qq install intel-mkl-2020.3-111
   - wget "${ICCDL}" -q
-  - tar xzf ${ICCTARBALL} && rm ${ICCTARBALL}
+  - tar -I zstd -xf ${ICCTARBALL} && rm ${ICCTARBALL}
   - export PATH=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/:$PATH
   - export INTEL_LICENSE_FILE=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/
   - source /opt/intel/mkl/bin/mklvars.sh intel64
   - export _intel_arch=intel64
   - export _intel_lib=mkl_intel_lp64
   - export MKL="-L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_rt -lpthread -lm -ldl"
-  - export _gcc_opt="-O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
+  - export _intel_cc_opt="-O3 -fPIC -m64 -qnextgen -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
   - export LDFLAGS="-qopenmp"
   - export CFLAGS="${_gcc_opt}"
   - export CXXFLAGS="${_gcc_opt}"
