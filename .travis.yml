@@ -30,13 +30,13 @@ script:
   - sudo apt -qq update
   - sudo apt -qq install intel-mkl-2020.3-111
   - wget "${ICCDL}" -q
-  - tar xzf intel.tar.gz && rm intel.tar.gz
+  - tar -I zstd -xf ${ICCTARBALL} && rm ${ICCTARBALL}
   - export PATH=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/:$PATH
   - export INTEL_LICENSE_FILE=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/
   - source /opt/intel/mkl/bin/mklvars.sh intel64
   - export _intel_arch=intel64
   - export _intel_lib=mkl_intel_lp64
-  - export MKL="-L${MKLROOT}/lib/intel64 -Wl,--as-needed -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_rt -lpthread -lm -ldl"
+  - export MKL="-L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_rt -lpthread -lm -ldl"
   - export _gcc_opt="-O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
   - export LDFLAGS="-qopenmp"
   - export CFLAGS="${_gcc_opt}"
@@ -49,7 +49,7 @@ script:
   - export FC="ifort"
   - export AR="xiar"
   - export LD="xild"
-  - export LD_LIBRARY_PATH=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/compilers_and_libraries_2020.2.254/linux/compiler/lib/intel64_lin/
+  - export LD_LIBRARY_PATH=/home/travis/build/MitsuhaMiyamizu/R-MKL/intel/compilers_and_libraries_2020.3.275/linux/compiler/lib/intel64_lin/
   - source /home/travis/build/MitsuhaMiyamizu/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
   - wget "https://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz" -q
   - tar zxf R-4.0.2.tar.gz && rm R-4.0.2.tar.gz
