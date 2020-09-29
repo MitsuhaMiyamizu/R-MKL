@@ -1,6 +1,6 @@
 branches:
   only:
-    - /v\d+\.\d+\.+\d+_+[a-z]+_+[a-z]+_+[a-z]+_+[a-z]*/
+    - /[0-9]*.0.xenial/
 language: c
 arch: amd64
 os: linux
@@ -37,7 +37,7 @@ script:
   - export _intel_arch=intel64
   - export _intel_lib=mkl_intel_lp64
   - export MKL="-L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_rt -lpthread -lm -ldl"
-  - export _intel_cc_opt="-m64 -O3 -march=native -fPIC -fp-model precise -fp-model source -I${MKLROOT}/include"
+  - export _intel_cc_opt="-O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
   - export LDFLAGS="-qopenmp"
   - export CFLAGS="${_intel_cc_opt}"
   - export CXXFLAGS="${_intel_cc_opt}"
