@@ -3,7 +3,7 @@ R 4.0.2 built with Intel C++ Compiler (icc) /Intel Fortran Compiler (ifort) / Ma
 
 # Build Status
 
-[![Build Status](https://travis-ci.com/MitsuhaMiyamizu/R-MKL.svg?branch=master)](https://travis-ci.com/MitsuhaMiyamizu/R-MKL)
+[![Build Status](https://travis-ci.org/MitsuhaMiyamizu/R-MKL.svg?branch=master)](https://travis-ci.org/MitsuhaMiyamizu/R-MKL)
 
 # Inspired by
 
