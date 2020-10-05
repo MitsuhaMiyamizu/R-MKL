@@ -93,6 +93,6 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: /home/runner/work/R-MKL/R.tar.zst
-          tag: v4.0.2.bionic
+          tag: v4.0.2.xenial
           overwrite: true
           file_glob: true
