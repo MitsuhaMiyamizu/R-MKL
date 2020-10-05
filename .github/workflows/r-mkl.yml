@@ -23,7 +23,7 @@ jobs:
       - name: Install Building Dependencies for R-base
         run: |
           sudo apt-get install subversion ccache texlive texlive-fonts-extra texlive-latex-extra libx11-dev libpcre2-dev libjpeg-dev libpng-dev libtiff-dev libxmu-dev libxt-dev libreadline-dev -y
-          curl https://repogen.simplylinux.ch/txt/bionic/sources_dd16190d58c2ce272cf1b15983db2daaa096d075.txt | sudo tee /etc/apt/sources.list
+          curl https://repogen.simplylinux.ch/txt/xenial/sources_806a0b140939fc6715a1303545ba86ee3f40492c.txt | sudo tee /etc/apt/sources.list
           sudo apt-get -qq update
           sudo apt-get -qq build-dep r-base -y
           cd /home/runner/work/R-MKL/
