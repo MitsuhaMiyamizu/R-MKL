@@ -3,7 +3,8 @@ R 4.0.2 built with Intel C++ Compiler (icc) /Intel Fortran Compiler (ifort) / Ma
 
 # Build Status
 
-[![Build Status](https://travis-ci.org/MitsuhaMiyamizu/R-MKL.svg?branch=master)](https://travis-ci.org/MitsuhaMiyamizu/R-MKL)
+[![Build Status](https://github.com/MitsuhaMiyamizu/R-MKL/workflows/r-mkl/badge.svg)](https://github.com/MitsuhaMiyamizu/R-MKL/actions?query=workflow%3Ar-mkl)
+[![Build Status](https://github.com/MitsuhaMiyamizu/R-MKL/workflows/r-mkl-master/badge.svg)](https://github.com/MitsuhaMiyamizu/R-MKL/actions?query=workflow%3Ar-mkl-master)
 
 # Inspired by
 
