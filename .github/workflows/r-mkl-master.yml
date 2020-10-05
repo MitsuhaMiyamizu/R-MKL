@@ -1,0 +1,97 @@
+name: r-mkl-master
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup env
+        uses: actions/checkout@v2
+      - name: Download toolchain
+        env:
+          iccdl: ${{ secrets.ICCDLADDR }}
+          icctar: ${{ secrets.ICCTARBALL }}
+        run: |
+          sudo apt-get -qq install zstd
+          cd /home/runner/work/R-MKL/
+          wget ${iccdl} -q
+          tar -I zstd -xf ${icctar}
+          rm ${icctar}
+      - name: Install Building Dependencies for R-base
+        run: |
+          sudo apt-get install subversion ccache texlive texlive-fonts-extra texlive-latex-extra libx11-dev libpcre2-dev libjpeg-dev libpng-dev libtiff-dev libxmu-dev libxt-dev libreadline-dev -y
+          curl https://repogen.simplylinux.ch/txt/bionic/sources_dd16190d58c2ce272cf1b15983db2daaa096d075.txt | sudo tee /etc/apt/sources.list
+          sudo apt-get -qq update
+          sudo apt-get -qq build-dep r-base -y
+          cd /home/runner/work/R-MKL/
+          wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
+          sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB
+          sudo sh -c 'echo deb https://apt.repos.intel.com/mkl all main > /etc/apt/sources.list.d/intel-mkl.list'
+      - name: Install Intel MKL
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get -qq install intel-mkl-2020.3-111 -y
+      - name: Prepare R Source
+        run: |
+          export PATH=/home/runner/work/R-MKL/intel/bin/:$PATH
+          export INTEL_LICENSE_FILE=/home/runner/work/R-MKL/intel
+          source /opt/intel/mkl/bin/mklvars.sh intel64
+          export _intel_arch=intel64
+          export _intel_lib=mkl_intel_lp64
+          export MKL="-L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_rt -lpthread -lm -ldl"
+          export _intel_cc_opt="-O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
+          export LDFLAGS="-qopenmp"
+          export CFLAGS="${_intel_cc_opt}"
+          export CXXFLAGS="${_intel_cc_opt}"
+          export FFLAGS="${_intel_cc_opt}"
+          export FCFLAGS="${_intel_cc_opt}"
+          export CC="icc"
+          export CXX="icpc"
+          export F77="ifort"
+          export FC="ifort"
+          export AR="xiar"
+          export LD="xild"
+          export LD_LIBRARY_PATH=/home/runner/work/R-MKL/intel/compilers_and_libraries_2020.3.275/linux/compiler/lib/intel64_lin/
+          source /home/runner/work/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
+          cd /home/runner/work/R-MKL/
+          wget "https://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz" -q
+          tar zxf R-4.0.2.tar.gz && rm R-4.0.2.tar.gz
+          cd R-4.0.2/
+          ./configure --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack --disable-R-profiling --with-tcltk
+      - name: Compile R
+        run: |
+          export PATH=/home/runner/work/R-MKL/intel/bin/:$PATH
+          export INTEL_LICENSE_FILE=/home/runner/work/R-MKL/intel
+          source /opt/intel/mkl/bin/mklvars.sh intel64
+          export _intel_arch=intel64
+          export _intel_lib=mkl_intel_lp64
+          export MKL="-L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_rt -lpthread -lm -ldl"
+          export _intel_cc_opt="-O3 -fPIC -m64 -march=native -fp-model precise -fp-model source -I${MKLROOT}/include"
+          export LDFLAGS="-qopenmp"
+          export CFLAGS="${_intel_cc_opt}"
+          export CXXFLAGS="${_intel_cc_opt}"
+          export FFLAGS="${_intel_cc_opt}"
+          export FCFLAGS="${_intel_cc_opt}"
+          export CC="icc"
+          export CXX="icpc"
+          export F77="ifort"
+          export FC="ifort"
+          export AR="xiar"
+          export LD="xild"
+          export LD_LIBRARY_PATH=/home/runner/work/R-MKL/intel/compilers_and_libraries_2020.3.275/linux/compiler/lib/intel64_lin/
+          source /home/runner/work/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
+          cd /home/runner/work/R-MKL/R-4.0.2/
+          make
+          cd ..
+          tar -I zstd -cf R.tar.zst R-4.0.2/
+      - name: Upload Binaries to Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: /home/runner/work/R-MKL/R.tar.zst
+          tag: v4.0.2.bionic
+          overwrite: true
+          file_glob: true
