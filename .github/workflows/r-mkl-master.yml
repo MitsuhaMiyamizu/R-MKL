@@ -60,6 +60,7 @@ jobs:
           wget "https://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz" -q
           tar zxf R-4.0.2.tar.gz && rm R-4.0.2.tar.gz
           cd R-4.0.2/
+          sed -i '/^#undef HAVE_MATHERR/d' src/include/config.h.in
           ./configure --prefix=/usr --libdir=/usr/lib --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack --disable-R-profiling --with-tcltk
       - name: Compile R
         run: |
