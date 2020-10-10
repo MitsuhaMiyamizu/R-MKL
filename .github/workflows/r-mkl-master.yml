@@ -57,11 +57,11 @@ jobs:
           export LD_LIBRARY_PATH=/home/runner/work/R-MKL/intel/compilers_and_libraries_2020.3.275/linux/compiler/lib/intel64_lin/
           source /home/runner/work/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
           cd /home/runner/work/R-MKL/
-          wget "https://cran.r-project.org/src/base/R-4/R-4.0.2.tar.gz" -q
-          tar zxf R-4.0.2.tar.gz && rm R-4.0.2.tar.gz
-          cd R-4.0.2/
+          wget "https://cran.r-project.org/src/base/R-4/R-4.0.3.tar.gz" -q
+          tar zxf R-4.0.3.tar.gz && rm R-4.0.3.tar.gz
+          cd R-4.0.3/
           sed -i '/^#undef HAVE_MATHERR/d' src/include/config.h.in
-          ./configure --prefix=/usr --libdir=/usr/lib/R/ --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack --disable-R-profiling --with-tcltk LIBnn=lib
+          ./configure --prefix=/usr --libdir=/usr/lib/R/ --sysconfdir=/etc/R --enable-lto --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack --disable-R-profiling --with-tcltk LIBnn=lib
       - name: Compile R
         run: |
           export PATH=/home/runner/work/R-MKL/intel/bin/:$PATH
@@ -84,15 +84,15 @@ jobs:
           export LD="xild"
           export LD_LIBRARY_PATH=/home/runner/work/R-MKL/intel/compilers_and_libraries_2020.3.275/linux/compiler/lib/intel64_lin/
           source /home/runner/work/R-MKL/intel/bin/compilervars.sh ${_intel_arch}
-          cd /home/runner/work/R-MKL/R-4.0.2/
+          cd /home/runner/work/R-MKL/R-4.0.3/
           make
           cd ..
-          tar -I zstd -cf R.tar.zst R-4.0.2/
+          tar -I zstd -cf R-4.0.3.tar.zst R-4.0.3/
       - name: Upload Binaries to Release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: /home/runner/work/R-MKL/R.tar.zst
-          tag: v4.0.2.bionic
+          file: /home/runner/work/R-MKL/R-4.0.3.tar.zst
+          tag: v4.0.3.bionic
           overwrite: true
           file_glob: true
