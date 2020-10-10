@@ -1,4 +1,4 @@
-name: r-mkl
+name: r-mkl-ng
 on:
   push:
     branches: [ xenial ]
