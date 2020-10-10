@@ -1,5 +1,5 @@
 # R-MKL
-R 4.0.3 built with Intel C++ Compiler (icc) /Intel Fortran Compiler (ifort) / Math Kernel Library (MKL) for research purposes only.
+R 4.0.3 built with Intel C/C++ Compiler Next Generation Code Generator (icx/icpx) /Intel Fortran Compiler (ifort) / Math Kernel Library (MKL) for research purposes only.
 
 # Build Status
 
