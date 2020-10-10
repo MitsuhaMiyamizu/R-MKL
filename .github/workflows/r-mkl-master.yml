@@ -61,7 +61,7 @@ jobs:
           tar zxf R-4.0.3.tar.gz && rm R-4.0.3.tar.gz
           cd R-4.0.3/
           sed -i '/^#undef HAVE_MATHERR/d' src/include/config.h.in
-          ./configure --prefix=/usr --libdir=/usr/lib/R/ --sysconfdir=/etc/R --enable-lto --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack --disable-R-profiling --with-tcltk LIBnn=lib
+          ./configure --prefix=/usr --libdir=/usr/lib/R/ --sysconfdir=/etc/R --datarootdir=/usr/share rsharedir=/usr/share/R/ rincludedir=/usr/include/R/ rdocdir=/usr/share/doc/R/ --with-x --enable-R-shlib --with-blas="$MKL" --with-lapack --disable-R-profiling --with-tcltk LIBnn=lib
       - name: Compile R
         run: |
           export PATH=/home/runner/work/R-MKL/intel/bin/:$PATH
